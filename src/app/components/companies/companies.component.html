@@ -1,0 +1,17 @@
+<div class="container">
+    <h2 class="text-center mt-4">Our Companies Locations</h2>
+    <agm-map [latitude]="lat" [longitude]="lng" [scrollwheel]="true" [zoom]="zoom">
+        <agm-marker *ngFor="let company of companies" [latitude]="company.company_lat" [longitude]="company.company_lng" iconUrl="http://www.descon.com/en/img/en.png">
+            <agm-info-window>
+                <strong>{{company.company_name}}</strong>
+            </agm-info-window>
+        </agm-marker>
+    </agm-map>
+</div>
+
+<div *ngFor="let company of companies">
+    <p>{{company.company_lat}}</p>
+    <p>{{company.company_lng}}</p>
+</div>
+<!-- <p>{{companies.company_lat}}</p>
+=[[.;<p>{{companies.company_lng}}</p> -->

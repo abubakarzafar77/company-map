@@ -1,0 +1,115 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div class="container">
+    <h2 class="text-center mt-4">Add Company Data</h2>
+    <form (ngSubmit)="f.form.valid && addCompanyData()" #f="ngForm">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group" [ngClass]="{ 'has-danger':f.submitted && !companyName.valid,'has-success':f.submitted && companyName.valid}">
+                    <label for="companyName">Company Name</label>
+                    <input type="text" class="form-control form-control-warning" [ngClass]="{ 'form-control-danger':f.submitted && !companyName.valid,'form-control-success':f.submitted && companyName.valid}" name="companyName" [(ngModel)]="company.name" #companyName="ngModel"
+                        required>
+                    <div *ngIf="f.submitted && companyName.valid" class="form-control-feedback">Success! You've done it.</div>
+                    <div *ngIf="f.submitted && !companyName.valid" class="form-control-feedback">Company Name is required</div>
+                </div>
+                <div class="form-group">
+                    <label for="">Your Company Location</label>
+                    <input type="text" placeholder="Search for Location" class="form-control" #search>
+                </div>
+                <div class="form-group searchMap">
+                    <agm-map [latitude]="company.lat" [longitude]="company.lng" [scrollwheel]="true" [zoom]="zoom">
+                        <agm-marker (dragEnd)="markerDragEnd(company, $event)" [latitude]="company.lat" [longitude]="company.lng" [markerDraggable]="true">
+                            <agm-info-window>
+                                <strong>{{company.name}}</strong>
+                            </agm-info-window>
+                        </agm-marker>
+                    </agm-map>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="">Set Location Latitude</label>
+                            <input type="text" class="form-control" [(ngModel)]="company.lat" name="companyLat" #companyLat="ngModel">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="">Set Location Longitude</label>
+                            <input type="text" class="form-control" [(ngModel)]="company.lng" name="companyLng" #companyLng="ngModel">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="">Country Name</label>
+                            <input type="text" class="form-control" [(ngModel)]="company.country" name="companyCountry" #companyCountry="ngModel">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="">Province Name</label>
+                            <input type="text" class="form-control" [(ngModel)]="company.province" name="companyProvince" #companyProvince="ngModel">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="">District Name</label>
+                            <input type="text" class="form-control" [(ngModel)]="company.district" name="companyDistrict" #companyDistrict="ngModel">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="">City Name</label>
+                            <input type="text" class="form-control" [(ngModel)]="company.city" name="companyCity" #companyCity="ngModel">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="">Vicinity</label>
+                            <input type="text" class="form-control" [(ngModel)]="company.vicinity" name="companyVicinity" #companyVicinity="ngModel">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="">Road and Street</label>
+                            <input type="text" class="form-control" [(ngModel)]="company.roadAndStreet" name="companyRoadAndStreet" #companyRoadAndStreet="ngModel">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="">Postal Code</label>
+                            <input type="text" class="form-control" [(ngModel)]="company.postalCode" name="companyPostalCode" #companyPostalCode="ngModel">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="">Company Image</label><br>
+                            <input type="file" class="form-control" name="selectFile" #selectFile id="selectFile">
+                            <input type="button" class="btn btn-primary" (click)="uploadImage()" value="Upload File">
+                            <!-- <ng4-files-click (filesSelect)="filesSelect($event)">
+                                <span>Click me to upload</span>
+                            </ng4-files-click>
+                            <ng4-files-drop (filesSelect)="filesSelect($event)" [configId]="'my-video-config'">
+                                <div style="display: inline-block; height: 100px; width: 100px; background-color: gray">
+                                    {{selectedFiles}}
+                                </div>
+                            </ng4-files-drop> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group text-center">
+            <button type="submit" class="btn btn-primary">Add Company Data</button>
+        </div>
+    </form>
+
+</div>
