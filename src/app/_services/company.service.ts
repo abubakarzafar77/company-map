@@ -14,9 +14,10 @@ export class CompanyService {
         return this.http.get('http://map/api/companies')
             .map((response: Response) => response.json());
     }
-    createCompany(company) {
-        return this.http.post('http://map/api/company/add', JSON.stringify(company), { headers: this.headers })
-            .map((response: Response) => response.json());
+    createCompany(formData) {
+        console.log(formData);
+        return this.http.post('http://map/api/company/add', formData)
+            .catch(this._errorHandler);
     }
     uploadImage(formData: any) {
         let url: string = 'http://map/api/company/uploadFile';

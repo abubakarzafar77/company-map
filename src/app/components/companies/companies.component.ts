@@ -9,7 +9,8 @@ import { CompanyService } from '../../_services/company.service'
 })
 export class CompaniesComponent implements OnInit {
     companies: any = [];
-    zoom: number = 10;
+    domain_url: string = "http://localhost/map/uploads/";
+    zoom: number = 12;
     lat: number;
     lng: number;
     constructor(private _companyService: CompanyService) {
@@ -28,9 +29,7 @@ export class CompaniesComponent implements OnInit {
 
                 this.lat = parseFloat(data[0].company_lat);
                 this.lng = parseFloat(data[0].company_lng);
-                // console.log(data);
-                // console.log(this.lat);
-                // console.log(this.lng);
+
                 for (var i = 0; i < data.length; i++) {
                     data[i].company_lat = parseFloat(data[i].company_lat);
                     data[i].company_lng = parseFloat(data[i].company_lng);

@@ -22,15 +22,23 @@ export class NewComponent implements OnInit {
         let files = this.elem.nativeElement.files;
         let file = files[0];
         let _formData = new FormData();
-        _formData.append('selectFile', file, file.name);
+        _formData.append('selectFile', file);
+        _formData.append('company', JSON.stringify(this.company));
         this._companyService.uploadImage(_formData).subscribe(res => console.log(res));
 
-
+        // let arr = [];
+        // for (let key in this.company) {
+        //     if (this.company.hasOwnProperty(key)) {
+        //         arr.push(this.company[key]);
+        //         console.log(key);
+        //     }
+        // }
+        // console.log(arr);
+        console.log(JSON.stringify(this.company));
         console.log(files[0]);
         console.log(_formData.has('selectFile'));
         console.log(_formData);
     }
-
     // public selectedFiles;
     // private configImage: Ng4FilesConfig = {
     //     acceptExtensions: ['png', 'jpeg', 'jpg'],
@@ -132,10 +140,18 @@ export class NewComponent implements OnInit {
             })
     }
     addCompanyData() {
-        console.log(this.company);
-        this._companyService.createCompany(this.company)
+        let files = this.elem.nativeElement.files;
+        let file = files[0];
+        console.log(file);
+        let _formData = new FormData();
+        _formData.append('selectFile', file);
+        _formData.append('company', JSON.stringify(this.company));
+        console.log(_formData.has('company'));
+
+        this._companyService.createCompany(_formData)
             .subscribe(data => {
                 console.log(data);
+                console.log('response');
             }, error => {
                 console.log(error);
                 console.log("hello");
